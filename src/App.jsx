@@ -1,22 +1,42 @@
+import './App.css'
+import Navbar from './components/Navbar';
+import MainSection from './components/MainSection';
+import { useState } from 'react';
 
-import { useState } from "react"
-import "./App.css";
-import BlackButton from "./components/BlackButton";
+
 
 const App = () =>{
-  const[isWhite, setWhite] = useState(false);
-  const Black = () =>{
-    setWhite(!isWhite);
-  }
-  return(
-    <div className={`app  ${isWhite ? "night-mode" : "day-mode"}`}>
-      <h1>{isWhite ? "Modalità Notte" : "Modalità Giorno"}</h1>
-      <BlackButton onClick={Black} />
-    </div>
-    
-   
-    
-  )
+  const links =[
+    {
+    href:'/',
+    text:'Home',
+    id: 0
+  },
+    {
+    href:'/Contacts',
+    text:'Contacts',
+    id: 1
+  },
+    {
+    href:'/About',
+    text:'About us',
+    id: 2
+  },
+] 
+const [ mode, setMode] = useState('light');
+
+return (
+  <div className={mode}>
+    <button onClick={() =>{
+      setMode(mode === 'light' ? 'dark' : 'light');
+    }}>change mood</button>
+<Navbar
+links={links}
+/>
+<MainSection/>
+  </div>
+)
+
 }
 
 
